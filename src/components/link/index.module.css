@@ -4,7 +4,7 @@
     text-decoration: none;
 }
 
-.list-item {
+.header-list-item {
     display: inline-block;
     height: auto;
     margin-right: 2%;
@@ -14,40 +14,40 @@
     vertical-align: top;
 }
 
-.list-item:not(:first-child) {
+.header-list-item:not(:first-child) {
     padding: 2%;
     margin-top: 1.5%;
     border-top: 2px solid #ffa000;
 }
 
-.list-item:hover {
+.header-list-item:hover {
     border-top: none;
     border-bottom: 2px solid #ffa000;
     font-weight: bold;
 }
 
-footer .list-item:hover {
+.footer-list-item:hover {
     border-bottom: none;
     border-top: 2px solid #234465;
     font-weight: bold;
 }
 
-footer .list-item a {
+.footer-list-item a {
     color: #234465;
     text-decoration: none;
 }
 
-footer .list-item:nth-child(1) {
+.footer-list-item:nth-child(1) {
     margin-left: 1%;
 }
 
-footer .list-item:not(:last-child) {
+.footer-list-item:not(:last-child) {
     padding: 2%;
     margin-top: 1.5%;
     border-bottom: 2px solid #234465;
 }
 
-aside .list-item {
+.aside-list-item {
     display: block;
     width: 98%;
     border-left: 2px solid #234465;
@@ -57,7 +57,7 @@ aside .list-item {
     text-align: center;
 }
 
-aside .list-item a {
+.aside-link {
     color: #234465;
     text-align: center;
     text-decoration: none;
@@ -66,7 +66,7 @@ aside .list-item a {
     display: block;
 }
 
-aside .list-item:hover {
+.aside-link:hover {
     border-left: none;
     border-right: none;
     font-weight: bold;
