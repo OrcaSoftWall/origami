@@ -8,3 +8,24 @@
     border-bottom: 2px solid #ffa000;
     border-top: 2px solid #ffa000;
 }
+
+
+.image {
+    display: inline-block;
+    height: 11.4vh;
+    margin-right: 2%;
+    cursor: pointer;
+    padding: 0.5%;
+    margin: 0.1%;
+    vertical-align: top;
+}
+
+
+.image:hover {
+    border-top: none;
+    border-bottom: 2px solid #ffa000;
+    font-weight: bold;
+    padding: 0.5%;
+    margin: 0.1%;
+}
+
