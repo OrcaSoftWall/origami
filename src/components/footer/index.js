@@ -10,8 +10,9 @@ const Footer = () => {
             <ul>
             {
                 links.map(nav => {
+                    const { title, link } = nav
                     return (
-                        <Link href={nav.link} title={nav.title} type="footer" />
+                        <Link key={title} href={link} title={title} type="footer" />
                     )
                 })
             }
