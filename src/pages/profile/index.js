@@ -24,6 +24,7 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props)
     this.getUser(this.props.match.params.userid)
   }
 

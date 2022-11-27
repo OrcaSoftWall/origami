@@ -3,35 +3,57 @@ import Title from '../../components/title';
 import SubmitButton from '../../components/button/submit-button';
 import PageLayout from '../../components/page-layout';
 import Input from '../../components/input';
-import { Component } from "react"
+import { Component } from "react";
+import authenticate from '../../utils/authenticate';
+import UserContext from '../../Context';
 
 class LoginPage extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      email: "",
+      username: "",
       password: ""
     }
   }
 
-  onChange = (event, type) => {
+  static contextType = UserContext
+
+  handleChange = (event, type) => {
     const newState = {}
     newState[type] = event.target.value
     this.setState(newState)
   }
 
+  handleSubmit = async (event) => {
+    event.preventDefault()
+    const { username, password } = this.state
+
+    //console.log(this.context)
+
+    if (username && password) {
+      await authenticate('http://localhost:9999/api/user/login',
+        { username, password },
+        (user) => {
+          console.log("-----Logged in!-----")
+          this.context.logIn(user)
+          // this.props.history.push('/')   // history not supported with r-r-d v6
+        }, (e) => console.log("Submit Error:  ", e ? e : " Something went wrong with your login!")
+      )
+    } else console.log("Submit Error: Username or Password do not match!")
+  }
+
   render() {
-    const { email, password } = this.state
+    const { username, password } = this.state
 
     return (
       <PageLayout>
-        <div className={styles.container}>
+        <form className={styles.container} onSubmit={this.handleSubmit} >
           <Title title="Login" />
-          <Input value={email} onChange={(e) => this.onChange(e, "email")} label="Email" id="email" />
-          <Input value={password} onChange={(e) => this.onChange(e, "password")} label="Password" id="password" />
+          <Input type="text" value={username} onChange={(e) => this.handleChange(e, "username")} label="Username" id="username" />
+          <Input type="password" value={password} onChange={(e) => this.handleChange(e, "password")} label="Password" id="password" />
           <SubmitButton title="Login" />
-        </div>
+        </form>
       </PageLayout>
     )
   }
