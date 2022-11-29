@@ -1,10 +1,10 @@
-
 .header-link {
     color: white;
     text-decoration: none;
 }
 
-.header-list-item, .footer-list-item {
+.header-list-item,
+.footer-list-item {
     display: inline-block;
     height: auto;
     margin-right: 2%;
