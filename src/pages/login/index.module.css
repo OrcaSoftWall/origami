@@ -4,5 +4,12 @@
     display: inline-block;
     text-align: center;
     vertical-align: top;
+
+    background-image: url('https://www.tutorialkart.com/sample_image.jpg');
+    /* background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; */
+    z-index: -100;
 }
 
