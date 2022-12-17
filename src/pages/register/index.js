@@ -6,6 +6,11 @@ import Input from '../../components/input';
 import { Component } from 'react';
 import authenticate from '../../utils/authenticate';
 import UserContext from '../../Context';
+
+// const RegisterPage = () = {
+  // https://youtu.be/R_RoJfAXYb8?t=5861
+// }
+
 class RegisterPage extends Component {
   constructor(props) {
     super(props)
