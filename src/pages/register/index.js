@@ -9,6 +9,7 @@ import UserContext from '../../Context';
 
 // const RegisterPage = () = {
   // https://youtu.be/R_RoJfAXYb8?t=5861
+  // to continue...
 // }
 
 class RegisterPage extends Component {
