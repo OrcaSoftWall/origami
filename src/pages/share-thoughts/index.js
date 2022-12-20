@@ -4,15 +4,21 @@ import PageLayout from '../../components/page-layout';
 import Title from '../../components/title';
 import SubmitButton from '../../components/button/submit-button';
 import Origamis from '../../components/origamis';
+import { useState } from 'react';
 
 const ShareThoughtsPage = () => {
+const [publication, setPublication] = useState("")
+const handleSubmit = () => {
+  console.log(publication)
+}
+
   return (
     <PageLayout>
       <Title title="Share your thoughts..." />
       <Container>         {/* <div className={styles.container} > */}
-        <TextArea defaultValue="Describe yourself here..." />       {/* <textarea  className={styles.textarea} defaultValue="..." /> */}
+        <TextArea placeholder="Describe yourself here..." value={publication}  onChange={e => setPublication(e.target.value)}/>       {/* <textarea  className={styles.textarea} defaultValue="..." /> */}
       </Container>
-      <SubmitButton title="Post" />
+      <SubmitButton title="Post" onClick={handleSubmit} />
       <Origamis length={3} />
     </PageLayout>
   );
