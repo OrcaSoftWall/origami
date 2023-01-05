@@ -5,11 +5,24 @@ import Title from '../../components/title';
 import SubmitButton from '../../components/button/submit-button';
 import Origamis from '../../components/origamis';
 import { useState } from 'react';
+import getCookie from '../../utils/get-cookie'
 
 const ShareThoughtsPage = () => {
 const [publication, setPublication] = useState("")
-const handleSubmit = () => {
-  console.log(publication)
+const handleSubmit = async () => {
+
+  const promise = await fetch('http://localhost:9999/api/origami',{
+    method:'POST',
+    body: JSON.stringify({
+      description: publication
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization' : getCookie('x-auth-token')             // checked at https://youtu.be/R_RoJfAXYb8?t=6765
+    }
+  })
+  const data = await promise.json()
+    console.log(data)
 }
 
   return (
