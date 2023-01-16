@@ -21,6 +21,7 @@ const App = (props) => {
         const token = getCookie('x-auth-token')
         if (!token) {
             logOut()
+            setLoading(false)
             return
         }
 

@@ -9,8 +9,6 @@ import authenticate from '../../utils/authenticate';
 import UserContext from '../../Context';
 
 const RegisterPage = () => {
-// https://youtu.be/R_RoJfAXYb8?t=5861
-// to continue...
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [rePassword, setRePassword] = useState('')
