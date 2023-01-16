@@ -8,31 +8,37 @@ import { useState } from 'react';
 import getCookie from '../../utils/get-cookie'
 
 const ShareThoughtsPage = () => {
-const [publication, setPublication] = useState("")
-const handleSubmit = async () => {
+  const [publication, setPublication] = useState("")
+  const [updatedOrigami, setUpdatedOrigami] = useState([])   // used only as flag: when updates useEffect is updating the share-thoughts page
 
-  const promise = await fetch('http://localhost:9999/api/origami',{
-    method:'POST',
-    body: JSON.stringify({
-      description: publication
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization' : getCookie('x-auth-token')             // checked at https://youtu.be/R_RoJfAXYb8?t=6765
+  const handleSubmit = async () => {
+    try {
+      const promise = await fetch('http://localhost:9999/api/origami', {
+        method: 'POST',
+        body: JSON.stringify({
+          description: publication
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': getCookie('x-auth-token')
+        }
+      })
+      console.log(await promise.json())
+      setPublication("")
+      setUpdatedOrigami([...updatedOrigami, 1])       // just a flag for update after new post in the share-thoughts page
+    } catch (error) {
+      console.error(error)
     }
-  })
-  const data = await promise.json()
-    console.log(data)
-}
+  }
 
   return (
     <PageLayout>
       <Title title="Share your thoughts..." />
       <Container>         {/* <div className={styles.container} > */}
-        <TextArea placeholder="Describe yourself here..." value={publication}  onChange={e => setPublication(e.target.value)}/>       {/* <textarea  className={styles.textarea} defaultValue="..." /> */}
+        <TextArea placeholder="Describe yourself here..." value={publication} onChange={e => setPublication(e.target.value)} />       {/* <textarea  className={styles.textarea} defaultValue="..." /> */}
       </Container>
       <SubmitButton title="Post" onClick={handleSubmit} />
-      <Origamis length={3} />
+      <Origamis length={3} updatedOrigami={updatedOrigami} />
     </PageLayout>
   );
 }
@@ -40,13 +46,13 @@ const handleSubmit = async () => {
 const Container = styled.div`     
     text-align: center;
 `
-{/* styled(PageLayout)` - for Components */}
+{/* styled(PageLayout)` - for Components */ }
 const TextArea = styled.textarea`
     width: 300px;
     height: 100px;
     resize:none
     `
-    /* https://www.copycat.dev/blog/styled-components-react/ */
+/* https://www.copycat.dev/blog/styled-components-react/ */
 export default ShareThoughtsPage;
 
 
