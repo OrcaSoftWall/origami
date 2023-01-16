@@ -1,6 +1,6 @@
 .navigation {
     width: 100%;
-    height: 14vh;
+    height: 9vw;
     background-color: #234465;
     color: white;
     position: fixed;
@@ -12,7 +12,7 @@
 
 .image {
     display: inline-block;
-    height: 11.4vh;
+    height: 8vw;
     margin-right: 2%;
     cursor: pointer;
     padding: 0.5%;
