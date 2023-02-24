@@ -7,4 +7,4 @@ const UserContext = createContext({
     logOut: () => { }
 })
 
-export default UserContext 
+export default UserContext

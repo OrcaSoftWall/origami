@@ -11,6 +11,7 @@ import UserContext from '../../Context';
 const LoginPage = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
   const context = useContext(UserContext)
   const navigate = useNavigate();
 
@@ -25,7 +26,10 @@ const LoginPage = () => {
           console.log("-----Logged in!-----")
           context.logIn(user)
           navigate('/')   // history not supported with r-r-d v6
-        }, (e) => console.log("Submit Error:  ", e ? e : " Something went wrong with your login!")
+        }, (e) => {
+          setErrorMessage(e.message)
+          console.log("Submit Error:  ", e ? e : " Something went wrong with your login!")
+        }
       )
     } else console.log("Submit Error: Username or Password do not match!")
   }
@@ -34,10 +38,11 @@ const LoginPage = () => {
     <PageLayout>
       <form className={styles.container} onSubmit={handleSubmit} >
         <Title title="Login" />
-        <Input type="text" value={username} onChange={(e) => setUsername(e.target.value)} label="Username" id="username" />
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} label="Password" id="password" />
+        <Input type="text" value={username} onChange={(e) => { setUsername(e.target.value); setErrorMessage(null) }} label="Username" id="username" />
+        <Input type="password" value={password} onChange={(e) => {setPassword(e.target.value); setErrorMessage(null) }} label="Password" id="password" />
         <SubmitButton title="Login" />
       </form>
+      {errorMessage ? <Title title={errorMessage} /> : null}
     </PageLayout>
   )
 }
