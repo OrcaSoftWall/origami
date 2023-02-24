@@ -17,7 +17,7 @@ const authenticate = async (url, body, onSuccess, onFailure) => {
                 id: responce._id
             })
         } else {
-            onFailure()
+            onFailure(responce)
         }
     } catch (e) {
         console.log("Submit Error:  ", e)
