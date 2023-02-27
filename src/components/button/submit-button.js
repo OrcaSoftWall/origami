@@ -3,7 +3,7 @@ import styles from './submit-button.module.css'
 
 const SubmitButton = ({ title, onClick }) => {
   return (
-    <Button type="submit" onClick={onClick}>{title}</Button>
+    <Button data-test-id={`button-${title}`} type="submit" onClick={onClick}>{title}</Button>
   )
 }
 

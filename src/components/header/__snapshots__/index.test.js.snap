@@ -12,6 +12,7 @@ exports[`Header Component should render authenticated routes 1`] = `
     />
     <div
       className="header-list-item"
+      data-test-id="link-Publications"
     >
       <a
         className="header-link"
@@ -23,6 +24,7 @@ exports[`Header Component should render authenticated routes 1`] = `
     </div>
     <div
       className="header-list-item"
+      data-test-id="link-Share your thoughts"
     >
       <a
         className="header-link"
@@ -34,6 +36,7 @@ exports[`Header Component should render authenticated routes 1`] = `
     </div>
     <div
       className="header-list-item"
+      data-test-id="link-Profile"
     >
       <a
         className="header-link"
@@ -59,6 +62,7 @@ exports[`Header Component should render non-authenticated routes 1`] = `
     />
     <div
       className="header-list-item"
+      data-test-id="link-Publications"
     >
       <a
         className="header-link"
@@ -70,6 +74,7 @@ exports[`Header Component should render non-authenticated routes 1`] = `
     </div>
     <div
       className="header-list-item"
+      data-test-id="link-Register"
     >
       <a
         className="header-link"
@@ -81,6 +86,7 @@ exports[`Header Component should render non-authenticated routes 1`] = `
     </div>
     <div
       className="header-list-item"
+      data-test-id="link-Login"
     >
       <a
         className="header-link"
