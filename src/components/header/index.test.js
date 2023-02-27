@@ -1,8 +1,55 @@
 import renderer from 'react-test-renderer'
 import Header from '.'
 import TestingEnvironment from '../../test-utils/router'
+import getNavigation from "../../utils/navigation"
 
 describe('Header Component', () => {
+
+    it('Return authenticated routes from getNavigation', () => {
+        const links = getNavigation({
+            loggedIn: true,
+            id: '123'
+        })
+        const authLinks = [
+            {
+                title: "Publications",
+                link: "/"
+            },
+            {
+                title: "Share your thoughts",
+                link: "/share"
+            },
+            {
+                title: "Profile",
+                link: `/profile/123`
+            }
+        ]
+
+        expect(links).toStrictEqual(authLinks)
+    })
+    
+    it('Return non-authenticated routes from getNavigation', () => {
+        const links = getNavigation({
+            loggedIn: false
+        })
+        const guestLinks = [
+            {
+                title: "Publications",
+                link: "/"
+            },
+            {
+                title: "Register",
+                link: "/register"
+            },
+            {
+                title: "Login",
+                link: "/login"
+            }
+        ]
+
+        expect(links).toStrictEqual(guestLinks)
+    })
+
     it('should render authenticated routes', () => {
         const tree = renderer.create(
             <TestingEnvironment value={{
