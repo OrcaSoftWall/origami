@@ -9,9 +9,10 @@ const Origamis = (props) => {
   const [origamis, setOrigamis] = useState([])
 
   const getOrigamis = useCallback(async () => {
-      const origamis = await getOrigami(props.length)
+      const origamis = await getOrigami(props.length, props.user)
+      // const origamis = await getOrigami(props.length)
     setOrigamis(origamis)
-  }, [props.length])
+  }, [props.length, props.user])
 
   const renderOrigamis = () => {
     return (
