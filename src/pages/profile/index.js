@@ -58,7 +58,7 @@ const ProfilePage = () => {
         <button onClick={logOut}>Logout</button>
       </div>
     
-      <Origamis length={3} />
+      <Origamis length={3} user={params.userid}/>
     </PageLayout>
   );
 }
