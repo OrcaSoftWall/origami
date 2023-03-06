@@ -10,19 +10,36 @@ const Origamis = (props) => {
 
   const getOrigamis = useCallback(async () => {
     const origamis = await getOrigami(props.length, props.user)
-    // const origamis = await getOrigami(props.length)
     setOrigamis(origamis)
   }, [props.length, props.user])
 
+  const origamisCount = useMemo(() => {
+    return origamis.length;
+  }, [origamis]);
+  //
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const handlePrevPage = () => {
+    setCurrentPage(currentPage => currentPage - 1);
+  };
+  const handleNextPage = () => {
+    setCurrentPage(currentPage => currentPage + 1);
+  };
+  const totalPages = Math.ceil(origamisCount / itemsPerPage);
+  //
   const renderOrigamis = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
     return (
-      origamis.map((origam, index) => {
+      origamis.slice(startIndex, endIndex).map((origam, index) => {
         return (
-          <Origam key={origam._id} index={index} {...origam} />
+          <Origam key={origam._id} startIndex={startIndex} index={index} {...origam} />
         )
       })
     )
-  }, [origamis])
+  }, [origamis, currentPage, itemsPerPage])
+
+
 
   useEffect(() => {
     getOrigamis()
@@ -30,6 +47,24 @@ const Origamis = (props) => {
 
   return (
     <div className={styles["origamis-wrapper"]}>
+      <h2>Origamis ({origamisCount})</h2>
+      <div>
+        <button disabled={currentPage === 1} onClick={handlePrevPage}>
+          Previous
+        </button>
+        <span>{currentPage}</span>
+        <button disabled={currentPage === totalPages} onClick={handleNextPage}>
+          Next
+        </button>
+      </div>
+      <div>
+        <span>Items per page:   </span>
+        <span onClick={() => setItemsPerPage(5)}>5</span>
+        <span> | </span>
+        <span onClick={() => setItemsPerPage(10)}>10</span>
+        <span> | </span>
+        <span onClick={() => {setItemsPerPage(origamisCount); setCurrentPage(1)}}>All</span>
+      </div>
       {renderOrigamis}
     </div>
   )
