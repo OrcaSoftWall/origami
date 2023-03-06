@@ -2,19 +2,19 @@ import React from "react"
 import styles from "./index.module.css"
 import Origam from "../origam"
 import getOrigami from "../../utils/origami"
-import { useState, useCallback } from "react"
+import { useState, useCallback, useMemo } from "react"
 import { useEffect } from "react"
 
 const Origamis = (props) => {
   const [origamis, setOrigamis] = useState([])
 
   const getOrigamis = useCallback(async () => {
-      const origamis = await getOrigami(props.length, props.user)
-      // const origamis = await getOrigami(props.length)
+    const origamis = await getOrigami(props.length, props.user)
+    // const origamis = await getOrigami(props.length)
     setOrigamis(origamis)
   }, [props.length, props.user])
 
-  const renderOrigamis = () => {
+  const renderOrigamis = useMemo(() => {
     return (
       origamis.map((origam, index) => {
         return (
@@ -22,15 +22,15 @@ const Origamis = (props) => {
         )
       })
     )
-  }
+  }, [origamis])
 
   useEffect(() => {
     getOrigamis()
-  }, [props.updatedOrigami,getOrigamis])
+  }, [props.updatedOrigami, getOrigamis])
 
   return (
     <div className={styles["origamis-wrapper"]}>
-      {renderOrigamis()}
+      {renderOrigamis}
     </div>
   )
 }
