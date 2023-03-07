@@ -4,6 +4,7 @@ import Origam from "../origam"
 import getOrigami from "../../utils/origami"
 import { useState, useCallback, useMemo } from "react"
 import { useEffect } from "react"
+import Pagination from "../pagination"
 
 const Origamis = (props) => {
   const [origamis, setOrigamis] = useState([])
@@ -39,39 +40,20 @@ const Origamis = (props) => {
     )
   }, [origamis, currentPage, itemsPerPage])
 
-
-
   useEffect(() => {
     getOrigamis()
   }, [props.updatedOrigami, getOrigamis])
 
   return (
     <div className={styles["origamis-wrapper"]}>
-      <h2>Origamis ({origamisCount})</h2>
-      <div>
-        <button disabled={currentPage === 1} onClick={handlePrevPage}>
-          Previous
-        </button>
-        <span>{currentPage}</span>
-        <button disabled={currentPage === totalPages} onClick={handleNextPage}>
-          Next
-        </button>
-      </div>
-      <div>
-        <span>Items per page:   </span>
-        <span onClick={() => setItemsPerPage(5)}>5</span>
-        <span> | </span>
-        <span onClick={() => setItemsPerPage(10)}>10</span>
-        <span> | </span>
-        <span onClick={() => {setItemsPerPage(origamisCount); setCurrentPage(1)}}>All</span>
-      </div>
+      <Pagination origamisCount={origamisCount} currentPage={currentPage} 
+      setCurrentPage={setCurrentPage} setItemsPerPage={setItemsPerPage}
+      totalPages = {totalPages} handlePrevPage={handlePrevPage} 
+      handleNextPage = {handleNextPage} />
       {renderOrigamis}
     </div>
   )
 }
-
-
-
 
 // class Origamis extends React.Component {
 //   constructor(props) {
