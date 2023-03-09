@@ -56,6 +56,7 @@ const ProfilePage = () => {
         <p>User: {username}</p>
         <p>Posts: {posts}</p>
         <button onClick={logOut}>Logout</button>
+        <p>Last 3 publications by you:</p>
       </div>
     
       <Origamis length={3} user={params.userid}/>
