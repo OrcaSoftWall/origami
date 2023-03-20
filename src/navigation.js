@@ -29,6 +29,7 @@ const LazyNavigation = () => {
                     <Route path="/register" element={!loggedIn ? (<LazyRegisterPage />) : (<Navigate replace to="/" />)} />
                     <Route path="/login" element={!loggedIn ? (<LazyLoginPage />) : (<Navigate replace to="/" />)} />
                     <Route path="/profile/:userid" element={loggedIn ? (<LazyProfilePage />) : (<Navigate replace to="/login" />)} />
+                    <Route path="/edit-user/:userid" element={loggedIn ? (<LazyProfilePage />) : (<Navigate replace to="/login" />)} />
                     <Route path="*" element={<LazyErrorPage />} />
                 </Routes>
             </Suspense>

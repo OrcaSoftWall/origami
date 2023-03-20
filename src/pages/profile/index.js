@@ -2,6 +2,7 @@ import styles from './index.module.css';
 import PageLayout from '../../components/page-layout';
 import Origamis from '../../components/origamis';
 import Title from '../../components/title';
+import SubmitButton from '../../components/button/submit-button';
 import { Component, useState, useContext, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import UserContext from '../../Context';
@@ -55,7 +56,8 @@ const ProfilePage = () => {
       <div>
         <p>User: {username}</p>
         <p>Posts: {posts}</p>
-        <button onClick={logOut}>Logout</button>
+        <SubmitButton onClick={() => navigate(`/edit-user/${params.userid}`)} title="Edit Profile" />
+        <SubmitButton onClick={logOut} title="Logout" />
         <p>Last 3 publications by you:</p>
       </div>
     
