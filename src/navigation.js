@@ -14,6 +14,7 @@ const LazyShareThoughtsPage = lazy(() => import('./pages/share-thoughts'))
 const LazyRegisterPage = lazy(() => import('./pages/register'))
 const LazyLoginPage = lazy(() => import('./pages/login'))
 const LazyProfilePage = lazy(() => import('./pages/profile'))
+const LazyEditProfilePage = lazy(() => import('./pages/edit-user'))
 const LazyErrorPage = lazy(() => import('./pages/error'))
 
 const LazyNavigation = () => {
@@ -29,7 +30,7 @@ const LazyNavigation = () => {
                     <Route path="/register" element={!loggedIn ? (<LazyRegisterPage />) : (<Navigate replace to="/" />)} />
                     <Route path="/login" element={!loggedIn ? (<LazyLoginPage />) : (<Navigate replace to="/" />)} />
                     <Route path="/profile/:userid" element={loggedIn ? (<LazyProfilePage />) : (<Navigate replace to="/login" />)} />
-                    <Route path="/edit-user/:userid" element={loggedIn ? (<LazyProfilePage />) : (<Navigate replace to="/login" />)} />
+                    <Route path="/edit-user/:userid" element={loggedIn ? (<LazyEditProfilePage />) : (<Navigate replace to="/login" />)} />
                     <Route path="*" element={<LazyErrorPage />} />
                 </Routes>
             </Suspense>
