@@ -19,7 +19,7 @@ const RegisterPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     //console.log(this.context)
-
+console.log(username,"     ", password)
     if (username && password && rePassword && password === rePassword) {
       await authenticate('http://localhost:9999/api/user/register',
         { username, password },

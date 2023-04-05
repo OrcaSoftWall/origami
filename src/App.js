@@ -12,9 +12,23 @@ const App = (props) => {
     }
 
     const logOut = () => {
-        document.cookie = "x-auth-token=; expires = Thu, 01 Jan 1970 00:00:00 GMT"          //"x-auth-token=; max-age=10;"
-        setUser({ loggedIn: false })
-        console.log("------Logged Out!------")
+        const token = getCookie('x-auth-token');
+        fetch('http://localhost:9999/api/user/logout', {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+            .then(response => {
+                console.log('-----response:-----', response);
+                return response;
+            })
+            .then(() => {
+                document.cookie = 'x-auth-token=; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+                setUser({ loggedIn: false });
+                console.log('------Logged Out!------');
+            })
+            .catch(error => console.log(error));
     }
 
     useEffect(() => {
@@ -60,6 +74,7 @@ const App = (props) => {
             logIn,
             logOut
         }}>
+            {/* {loading ? <Spinner /> : props.children} */}
             {props.children}
         </UserContext.Provider>
     )
