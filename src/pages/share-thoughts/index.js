@@ -12,22 +12,24 @@ const ShareThoughtsPage = () => {
   const [updatedOrigami, setUpdatedOrigami] = useState([])   // used only as flag: when updates useEffect is updating the share-thoughts page
 
   const handleSubmit = async () => {
-    try {
-      const promise = await fetch('http://localhost:9999/api/origami', {
-        method: 'POST',
-        body: JSON.stringify({
-          description: publication
-        }),
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': getCookie('x-auth-token')
-        }
-      })
-      console.log(await promise.json())
-      setPublication("")
-      setUpdatedOrigami([...updatedOrigami, 1])       // just a flag for update after new post in the share-thoughts page
-    } catch (error) {
-      console.error(error)
+    if (publication) {
+      try {
+        const promise = await fetch('http://localhost:9999/api/origami', {
+          method: 'POST',
+          body: JSON.stringify({
+            description: publication
+          }),
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': getCookie('x-auth-token')
+          }
+        })
+        console.log(await promise.json())
+        setPublication("")
+        setUpdatedOrigami([...updatedOrigami, 1])       // just a flag for update after new post in the share-thoughts page
+      } catch (error) {
+        console.error(error)
+      }
     }
   }
 

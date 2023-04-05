@@ -19,7 +19,7 @@ const LazyErrorPage = lazy(() => import('./pages/error'))
 
 const LazyNavigation = () => {
     const context = useContext(UserContext)
-    console.log("UserContext:   ", context)
+    // console.log("UserContext:   ", context)
     const loggedIn = context.user && context.user.loggedIn
     return (
         <BrowserRouter>

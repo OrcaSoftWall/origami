@@ -42,8 +42,6 @@ const ProfilePage = () => {
     navigate("/") // this.props.history('/')
   }
 
-
-
   if (!username) {
     return (
       <PageLayout>
