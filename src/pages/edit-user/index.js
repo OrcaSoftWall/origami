@@ -7,6 +7,7 @@ import { Component, useState, useContext, useCallback, useEffect } from "react";
 import { useParams, useNavigate, useHistory } from "react-router-dom";
 import getCookie from '../../utils/get-cookie';
 import UserContext from '../../Context';
+import CommonButton from '../../components/button';
 
 export function withRouter(Children) {
   return (props) => {
@@ -38,6 +39,19 @@ const EditUserPage = () => {
   useEffect(() => {
     getData()
   }, [])
+
+  const handleClear = (e) => {
+    e.preventDefault();
+    setUsername('');
+    setNewPassword('');
+    setRePassword('');
+  }
+
+  const handleCancel = async (e) => {
+    e.preventDefault()
+    await handleClear (e)
+    navigate(`/profile/${context.user.id}`)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -77,6 +91,8 @@ const EditUserPage = () => {
         <Input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} label="New Password" id="new-password" />
         <Input type="password" value={rePassword} onChange={(e) => setRePassword(e.target.value)} label="Re-Password" id="re-password" />
         <SubmitButton title="Edit!" />
+        <SubmitButton title="Clear Form" onClick={handleClear} />
+        <SubmitButton title="Cancel" onClick={handleCancel} />
         {errorMessage ? <Title title={errorMessage} /> : null}
       </form>
     </PageLayout>
