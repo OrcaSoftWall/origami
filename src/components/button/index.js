@@ -1,13 +1,12 @@
 import styled from 'styled-components'
-import styles from './submit-button.module.css'
 
-const SubmitButton = ({ title, onClick }) => {
+const CommonButton = ({ type, title, onClick }) => {
   return (
-    <Button data-test-id={`button-${title}`} type="submit" onClick={onClick}>{title}</Button>
+    <Button data-test-id={`button-${title}`} type={type} onClick={onClick}>{title}</Button>
   )
 }
 
-export default SubmitButton
+export default CommonButton
 
 const Button = styled.button`
     display: inline;
@@ -16,7 +15,6 @@ const Button = styled.button`
     padding: 1%;
     min-width: 4em;
     border-radius: 6px;
-    /* display: block; */
     margin: 0 auto;
     border: none;
     margin-top: 0.5%;
